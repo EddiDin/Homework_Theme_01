@@ -36,7 +36,32 @@ namespace Homework_Theme_01
             // 5. В качестве бонусной части, за дополнительную оплату $50, заказчик просит реализовать 
             //    возможность вывода данных в центре консоли.
 
-            
+
+            const int MAX_EMPLOYEES = 3;
+
+            Repository NoteBook = new Repository(MAX_EMPLOYEES);
+
+            Console.WriteLine("Создание записной книжки. Кол-во сотрудников - {0}", MAX_EMPLOYEES);
+
+            int successfullyAddedEmployeesCount = 0;
+            while (successfullyAddedEmployeesCount < 3) {
+                try
+                {
+                    Console.WriteLine("Добавление сотрудника " + successfullyAddedEmployeesCount + 1);
+                    Employee employee = EmployeeBuilder.build();
+                    NoteBook.save(employee);
+                    successfullyAddedEmployeesCount++;
+                }
+                catch (EmployeeBuildException e) {
+                    Console.WriteLine(e.Message);
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Максимальное кол-во сотрудников добавлено в записную книжку.");
+
+            Console.ReadKey();
 
         }
     }

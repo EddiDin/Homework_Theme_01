@@ -15,13 +15,25 @@ namespace Homework_Theme_01
         /// </summary>
         public List<Employee> Employees { get; set; }
 
-        public Repository(int Count)
+        public Repository()
         {
             this.Employees = new List<Employee>();
         }
 
-        public void save(Employee employee) {
+        public void Save(Employee employee)
+        {
             this.Employees.Add(employee);
+        }
+
+        public void Print(string message)
+        {
+            Console.WriteLine(message);
+            Console.WriteLine($"{"Имя",15} {"Возраст",10} {"Рост",10} {"Русский",10} {"История",10} {"Математика",10} {"Средний балл",12}");
+
+            foreach (Employee employee in this.Employees)
+            {                                    
+                Console.WriteLine(employee);       
+            }                                    
         }
     }
 }

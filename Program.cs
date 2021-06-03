@@ -37,29 +37,38 @@ namespace Homework_Theme_01
             //    возможность вывода данных в центре консоли.
 
 
-            const int MAX_EMPLOYEES = 3;
+            const int MAX_EMPLOYEES = 1;
 
-            Repository NoteBook = new Repository(MAX_EMPLOYEES);
+            Repository NoteBook = new Repository();
 
-            Console.WriteLine("Создание записной книжки. Кол-во сотрудников - {0}", MAX_EMPLOYEES);
+            string header = $"Создание записной книжки. Кол-во сотрудников - {MAX_EMPLOYEES}";
+            string divider = "----------------------------------------------------";
+            Console.SetCursorPosition((Console.WindowWidth - header.Length) / 2, Console.CursorTop);
+            Console.WriteLine(header);
+            Console.SetCursorPosition((Console.WindowWidth - divider.Length) / 2, Console.CursorTop);
+            Console.WriteLine(divider);
+            Console.WriteLine();
 
             int successfullyAddedEmployeesCount = 0;
-            while (successfullyAddedEmployeesCount < 3) {
+            EmployeeBuilder employeeBuilderInstance = new EmployeeBuilder();
+            while (successfullyAddedEmployeesCount < MAX_EMPLOYEES) {
                 try
                 {
-                    Console.WriteLine("Добавление сотрудника " + successfullyAddedEmployeesCount + 1);
-                    Employee employee = EmployeeBuilder.build();
-                    NoteBook.save(employee);
+                    Console.WriteLine("Добавление сотрудника " + (successfullyAddedEmployeesCount + 1));
+                    Employee employee = employeeBuilderInstance.Build();
+                    NoteBook.Save(employee);
                     successfullyAddedEmployeesCount++;
+                    employeeBuilderInstance = new EmployeeBuilder();
                 }
                 catch (EmployeeBuildException e) {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine($"Ошибка при добавлении сотрудника. {e.Message}");
                 }
 
                 Console.WriteLine();
             }
 
             Console.WriteLine("Максимальное кол-во сотрудников добавлено в записную книжку.");
+            NoteBook.Print("Записная книжка");
 
             Console.ReadKey();
 

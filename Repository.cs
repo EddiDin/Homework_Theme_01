@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Homework_Theme_01
 {
+    /// <summary>
+    /// Организация хранения данных.
+    /// </summary>
     class Repository
     {
 
@@ -15,16 +18,27 @@ namespace Homework_Theme_01
         /// </summary>
         public List<Employee> Employees { get; set; }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public Repository()
         {
             this.Employees = new List<Employee>();
         }
 
+        /// <summary>
+        /// Метод добавления сотрудника в репозиторий
+        /// </summary>
+        /// <param name="employee">Сотрудник. Объект класса Employee</param>
         public void Save(Employee employee)
         {
             this.Employees.Add(employee);
         }
 
+        /// <summary>
+        /// Форматированный вывод данных из репозитория
+        /// </summary>
+        /// <param name="message"></param>
         public void Print(string message)
         {
             Console.WriteLine(message);

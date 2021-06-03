@@ -37,8 +37,10 @@ namespace Homework_Theme_01
             //    возможность вывода данных в центре консоли.
 
 
-            const int MAX_EMPLOYEES = 1;
+            // Максимальное кол-во работников в записной книжке
+            const int MAX_EMPLOYEES = 3;
 
+            // Создание пустого репозитория (записная книжка)
             Repository NoteBook = new Repository();
 
             string header = $"Создание записной книжки. Кол-во сотрудников - {MAX_EMPLOYEES}";
@@ -49,9 +51,16 @@ namespace Homework_Theme_01
             Console.WriteLine(divider);
             Console.WriteLine();
 
+            // Счетчик успешно добавленных работников
             int successfullyAddedEmployeesCount = 0;
             EmployeeBuilder employeeBuilderInstance = new EmployeeBuilder();
-            while (successfullyAddedEmployeesCount < MAX_EMPLOYEES) {
+            // Запускаем while цикл до момент пока все сотрудники из максимального возможного кол-ва не будут добавлены
+            while (successfullyAddedEmployeesCount < MAX_EMPLOYEES)
+            {
+                // В билдере я инкапсулировал логику добавления/валидации данных.
+                // Выбрасываю в нем исключение, если что-то пошло не так. Тут это исключение обрабатываю.
+                // В случае если исключений не было инкрементирую счетчик успешно добавленных сотрудников и создаю новый билдер.
+                // Новый билдер создаю каждый раз при успешном добавлении, чтобы в нем запоминать успешно добавленные данные.
                 try
                 {
                     Console.WriteLine("Добавление сотрудника " + (successfullyAddedEmployeesCount + 1));
@@ -60,7 +69,8 @@ namespace Homework_Theme_01
                     successfullyAddedEmployeesCount++;
                     employeeBuilderInstance = new EmployeeBuilder();
                 }
-                catch (EmployeeBuildException e) {
+                catch (EmployeeBuildException e)
+                {
                     Console.WriteLine($"Ошибка при добавлении сотрудника. {e.Message}");
                 }
 
@@ -68,7 +78,9 @@ namespace Homework_Theme_01
             }
 
             Console.WriteLine("Максимальное кол-во сотрудников добавлено в записную книжку.");
-            NoteBook.Print("Записная книжка");
+            Console.WriteLine();
+
+            NoteBook.Print("Итоговая записная книжка:");
 
             Console.ReadKey();
 

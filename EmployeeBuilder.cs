@@ -6,17 +6,51 @@ using System.Threading.Tasks;
 
 namespace Homework_Theme_01
 {
+    /// <summary>
+    /// Класс билдера сотрудников. В нем скрыта логика ввода данных/валидации
+    /// </summary>
     class EmployeeBuilder
     {
+        /// <summary>
+        /// Имя
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Возраст
+        /// </summary>
         public sbyte Age { get; set; }
+
+        /// <summary>
+        /// Рост
+        /// </summary>
         public short Height { get; set; }
+
+        /// <summary>
+        /// Балл по русскому
+        /// </summary>
         public sbyte RussianScores { get; set; }
+
+        /// <summary>
+        /// Балл по истории
+        /// </summary>
         public sbyte HistoryScores { get; set; }
+
+        /// <summary>
+        /// Балл по математике
+        /// </summary>
         public sbyte MathScores { get; set; }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         static EmployeeBuilder() { }
 
+        /// <summary>
+        /// Метод добавления сотрудника.
+        /// Данные добавляются один за другим. Если что-то введено верно - сохраняется в свойство класса.
+        /// Выбрасывает пользовательское исключение.
+        /// </summary>
         public Employee Build()
         {
             string userInput;

@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace Homework_Theme_01
 {
+    /// <summary>
+    /// Пользовательское исключение для описания ошибок билдера работников.
+    /// </summary>
     [Serializable]
     class EmployeeBuildException : Exception
     {
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public EmployeeBuildException() { }
 
-        public EmployeeBuildException(string message) : base(message) { }
-
-        public EmployeeBuildException(string message, Exception inner) : base(message, inner) { } 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="message">Пользовательское сообщение об ошибке</param>
+        public EmployeeBuildException(string message) : base(message) { } 
     }
 }
